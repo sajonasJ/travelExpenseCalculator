@@ -6,7 +6,6 @@ This repository contains a simple Travel Expense Calculator that allows users to
 
 - **React** – A JavaScript library for building user interfaces
 - **Vite** – A modern build tool that provides fast development and bundling
-- **Vue** – A progressive framework for building user interfaces
 
 ## Getting Started
 

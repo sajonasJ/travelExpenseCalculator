@@ -14,6 +14,8 @@ const CurrencyConverter = () => {
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
   const [isCurrencyLocked, setIsCurrencyLocked] = useState(false);
+  const [exchangeRate, setExchangeRate] = useState(null);
+
   const notifySuccess = () => toast.success("Cleared History successfully!");
   const notifyError = () => toast.error("Conversion failed. Please try again.");
   const notifyWarn = () => toast.warn("Please enter a valid amount.");
@@ -61,12 +63,18 @@ const CurrencyConverter = () => {
 
       const data = await response.json();
       const rate = data.data[toCurrency];
+      const roundedRate = rate ? rate.toFixed(2) : null;
       if (!rate) {
         throw new Error(`Conversion rate for ${toCurrency} not found`);
       }
 
+      // Store the exchange rate
+      setExchangeRate(roundedRate);
+
+      // Optional: perform the conversion if needed
       const result = (amount * rate).toFixed(2);
-      setConvertedAmount(result);
+      const formattedResult = parseFloat(result).toLocaleString();
+      setConvertedAmount(formattedResult);
 
       const newHistory = [
         ...history,
@@ -74,7 +82,7 @@ const CurrencyConverter = () => {
           amount,
           fromCurrency,
           toCurrency,
-          result,
+          result: formattedResult,
           date: new Date().toLocaleString(),
         },
       ];
@@ -96,7 +104,6 @@ const CurrencyConverter = () => {
     setIsCurrencyLocked(false);
     localStorage.removeItem("conversion_history");
     notifySuccess();
-    console.log("History cleared");
   };
 
   const saveHistory = (history) => {
@@ -109,8 +116,9 @@ const CurrencyConverter = () => {
   };
 
   const totalConvertedAmount = history
-    .reduce((total, entry) => total + parseFloat(entry.result), 0)
-    .toFixed(2);
+  .reduce((total, entry) => total + parseFloat(entry.result), 0)
+  .toLocaleString();
+
 
   return (
     <>
@@ -183,14 +191,16 @@ const CurrencyConverter = () => {
           ) : (
             convertedAmount && (
               <h5>
-                {amount} {fromCurrency} = {convertedAmount} {toCurrency}
+                1 {fromCurrency} = {exchangeRate} {toCurrency}
               </h5>
             )
           )}
         </div>
 
-        <div className="mt-4 border p-2 rounded" style={{ background: "#e0e0e0" }}>
-
+        <div
+          className="mt-4 border p-2 rounded"
+          style={{ background: "#e0e0e0" }}
+        >
           <h5>Conversion History</h5>
           {history.length === 0 ? (
             <p>No history available.</p>
@@ -206,7 +216,10 @@ const CurrencyConverter = () => {
           )}
         </div>
         {history.length > 0 && (
-          <div className="border mt-3  text-center rounded p-2"  style={{ background: "#e0e0e0" }}>
+          <div
+            className="border mt-3  text-center rounded p-2"
+            style={{ background: "#e0e0e0" }}
+          >
             <h5>
               Total: {totalConvertedAmount} {toCurrency} from {fromCurrency}
             </h5>

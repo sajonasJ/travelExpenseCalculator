@@ -1,0 +1,125 @@
+/* General Resets */
+body, h1, h2, h3, h4, h5, h6, p, ul, li, input, button, select {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9; /* Neutral background */
+  color: #333; /* Dark text for good contrast */
+  line-height: 1.5;
+  padding: 10px; /* Adds a little breathing room */
+}
+
+/* Headings */
+h1 {
+  font-size: 1.8rem; /* Large, readable on small screens */
+  color: #4CAF50; /* Green for a positive vibe */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  margin: 15px 0;
+}
+
+h3 {
+  font-size: 1.2rem;
+  color: #555; /* Slightly lighter for less emphasis */
+  margin: 10px 0;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1rem;
+  color: #666; /* Subtle color for less contrast */
+  margin-bottom: 10px;
+}
+
+/* Lists */
+ul {
+  list-style: none; /* Clean mobile-friendly list */
+  padding-left: 0;
+}
+
+li {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+/* Inputs */
+input, select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* Buttons */
+button {
+  font-size: 1rem;
+  padding: 10px 15px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Highlighted Text */
+strong {
+  color: #4CAF50; /* Same as the main theme color */
+  font-weight: bold;
+}
+
+/* Links */
+a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Toast Container */
+#toast-container {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  max-width: 90%;
+  z-index: 9999;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p, input, select, button {
+    font-size: 0.9rem;
+  }
+}

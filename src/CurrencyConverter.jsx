@@ -7,8 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 const CurrencyConverter = () => {
   const url = "https://api.freecurrencyapi.com/v1/latest";
   const apik = "fca_live_DxVIn8pRa66prt3oaWi2pMUGpPhRRggDZOVlCW0i";
-  const [fromCurrency, setFromCurrency] = useState("AUD");
-  const [toCurrency, setToCurrency] = useState("JPY");
+  const [fromCurrency, setFromCurrency] = useState("JPY");
+  const [toCurrency, setToCurrency] = useState("AUD");
   const [amount, setAmount] = useState("");
   const [convertedAmount, setConvertedAmount] = useState(null);
   const [loading, setLoading] = useState(false);
